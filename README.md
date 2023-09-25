@@ -1,4 +1,4 @@
-# A Vue Shop
+# A Vue Shop - ananyaneogi
 
 An e-commerce sample website built with Vue JS, using vuex and vue-router.
 
