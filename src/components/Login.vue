@@ -9,26 +9,37 @@
        <div class="container">
           <div class="row">
              <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
-                <div v-if="!registerActive" class="card login" v-bind:class="{ error: emptyFields }">
+                <div v-if="registerActive==iniciar" class="card login" v-bind:class="{ error: emptyFields }">
                    <h1>Sign In</h1>
                    <form class="form-group">
                       <input v-model="emailLogin" type="email" class="form-control" placeholder="Email" required>
                       <input v-model="passwordLogin" type="password" class="form-control" placeholder="Password" required>
                       <button type="submit" class="btn btn-primary" @click="doLogin"> Ingresar </button>
-                      <p>Don't have an account? <a href="#" @click="registerActive = !registerActive, emptyFields = false">Sign up here</a>
+                      <p>Don't have an account? <a href="#" @click="registerActive = registrar, emptyFields = false">Sign up here</a>
                       </p>
-                      <p><a href="#">Forgot your password?</a></p>
+                      <p><a href="#" @click="registerActive = recuperar, emptyFields = false">Forgot your password?</a></p>
                    </form>
                 </div>
+
+                <div v-else-if="registerActive==recuperar" class="card register" v-bind:class="{ error: emptyFields }">
+                  <a href="#" @click="registerActive = iniciar, emptyFields = false">back</a> 
+                  <h1>Recuperar Contraseña</h1>
+                   <form class="form-group">
+                      <input v-model="correo" type="email" class="form-control" placeholder="Email" required>
+                      <button type="submit" class="btn btn-danger" @click="sendEmail">Enviar correo </button>
+                   </form>
+                </div>
+
+                
  
-                <div v-else class="card register" v-bind:class="{ error: emptyFields }">
+                <div v-else-if="registerActive==registrar" class="card register" v-bind:class="{ error: emptyFields }">
                    <h1>Sign Up</h1>
                    <form class="form-group">
                       <input v-model="emailReg" type="email" class="form-control" placeholder="Email" required>
                       <input v-model="passwordReg" type="password" class="form-control" placeholder="Password" required>
                       <input v-model="confirmReg" type="password" class="form-control" placeholder="Confirm Password" required>
                       <button type="submit" class="btn btn-danger" @click="doRegister">Registrarse </button>
-                      <p>Already have an account? <a href="#" @click="registerActive = !registerActive, emptyFields = false">Sign in here</a>
+                      <p>Already have an account? <a href="#" @click="registerActive = iniciar, emptyFields = false">Sign in here</a>
                       </p>
                    </form>
                 </div>
@@ -45,13 +56,17 @@
     
       data() {
     return {
-         registerActive: false,
+         registerActive: "iniciar",
        emailLogin: "",
        passwordLogin: "",
        emailReg: "",
        passwordReg: "",
        confirmReg: "",
-       emptyFields: false
+       emptyFields: false,
+       iniciar:"iniciar",
+       recuperar:"recuperar",
+       registrar:"registrar",
+       correo: ""
       };
        
     },
@@ -71,7 +86,22 @@
           } else {
              alert("You are now registered");
           }
-       }
+       },
+       sendEmail() {
+      Email.send({
+         SecureToken : "7dc3400d-bfaf-4368-a447-cce61abd9dcc",
+         From : "pradodavid042@gmail.com",
+         To : "fpradoa@ulasalle.edu.pe",
+         Subject : "Test email",
+         Body : "<html><h2>Header</h2><strong>Bold text</strong><br></br><em>Italic</em></html>"
+      }).then(message => alert(message)
+      );
+}
+    },
+    mounted() {
+      let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('src', 'https://smtpjs.com/v3/smtp.js')
+      document.head.appendChild(recaptchaScript)
     }
  };
    </script>
