@@ -13,7 +13,8 @@ export default new Vuex.Store({
     cartItems:0,
     checkoutStatus: null,
     highprice: 1500,
-    sale: false
+    sale: false,
+    busqueda: ""
   },
   getters,
   actions,

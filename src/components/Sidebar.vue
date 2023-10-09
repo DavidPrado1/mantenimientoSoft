@@ -1,6 +1,9 @@
 <template>
   <aside>
     <div class="aside-block">
+      <input class="test" type="text" v-model="busqueda" placeholder="Search things..."  @input="updateBusqueda($event)"/>
+    </div>
+      <div class="aside-block">
       <label for="pricerange">Maximum Price: <span>${{ pricerange }}</span></label>
       <input
         class="slider"
@@ -38,8 +41,9 @@ export default {
   data() {
     return {
       min: 0,
-      max: 2000,
-      check: this.checked
+      max: 2000.00,
+      check: this.checked,
+      busqueda: this.busquedas
     };
   },
   computed: {
@@ -48,6 +52,9 @@ export default {
     },
     checked() {
       return this.$store.state.sale;
+    },
+    busquedas() {
+      return this.$store.state.busqueda;
     }
   },
   methods: {
@@ -56,7 +63,11 @@ export default {
     },
     updateSale() {
       this.$store.commit('toggleSale');
-    }
+      console.log(this.$store.state.busqueda)
+    },
+    updateBusqueda($event) {
+      this.$store.commit('setBusqueda', $event.target.value)
+    },
   }
 
 }
@@ -111,5 +122,20 @@ export default {
     left: 2px;
     background: #5044ff;
   }
+
+
+  .test {
+  display: block;
+  width: 300px;
+  margin: 20px auto;
+  padding: 10px 45px;
+  background: white url("../assets/search-icon.svg") no-repeat 15px center;
+  background-size: 15px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
 
 </style>

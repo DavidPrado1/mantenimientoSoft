@@ -29,6 +29,10 @@ export default { // setting and updating the state
   setHighPrice(state, event) {
     state.highprice = event
   },
+
+  setBusqueda(state, event) {
+    state.busqueda = event
+  },
   toggleSale(state) {
     state.sale = !state.sale
   }

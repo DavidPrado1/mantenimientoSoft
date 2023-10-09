@@ -16,12 +16,13 @@
 
 <script>
 import {mapState, mapGetters, mapActions} from 'vuex'
-
+import axios from 'axios'
 export default {
   name: 'ProductList',
   data() {
     return {
-      // products: []
+      postURL: 'http://localhost:5000',
+      productos: [],
       loading: false,
       highprice: 100
     };
@@ -37,8 +38,11 @@ export default {
     //   products: state => state.products
     // }),
     products() {
-      return this.$store.state.products.filter(el =>
-        this.$store.state.sale
+      return this.productos.filter(el =>
+        this.$store.state.busqueda==""
+          ? parseFloat(el.price) < this.$store.state.highprice 
+          : parseFloat(el.price) < this.$store.state.highprice && el.title.toLowerCase().includes(this.$store.state.busqueda.toLowerCase())
+      ).filter(el => this.$store.state.sale
           ? el.price < this.$store.state.highprice && el.sale
           : el.price < this.$store.state.highprice
       )
@@ -61,7 +65,9 @@ export default {
     //   // this.products = products;
     //   store.commit('setProducts',products)
     // });
+    console.log(this.$store.state.busqueda)
     this.loading = true
+    this.initialize()
     // this.$store.dispatch('fetchProducts')
     this.fetchProducts()
       .then(() => this.loading = false)
@@ -72,6 +78,18 @@ export default {
       addProductToCart: 'addProductToCart'
 
     }),
+
+    initialize () {
+                
+                axios.post(this.postURL + '/productos').then((res) => {  
+                    console.log(res.data);
+                    this.productos = res.data;
+       
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+                },
 
     // addProductToCart(product) {
     //   this.$store.dispatch('addProductToCart',product)
