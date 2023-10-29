@@ -5,6 +5,10 @@ export default { // setting and updating the state
     state.products = products
   },
 
+  setUser(state,user) {
+    state.user = user
+  },
+
   pushProductToCart(state,productId) {
     state.cart.push({
       id: productId,

@@ -51,6 +51,7 @@
  </template>
    
    <script>
+   import store from '@/store/index'
    export default {
       name: 'Login',
     
@@ -76,7 +77,9 @@
           if (this.emailLogin === "" || this.passwordLogin === "") {
              this.emptyFields = true;
           } else {
-             alert("You are now logged in");
+            this.$store.state.user = this.emailLogin;
+            alert("You are now logged in");
+            this.$router.push('/');
           }
        },
        

@@ -43,8 +43,8 @@ export default {
           ? parseFloat(el.price) < this.$store.state.highprice 
           : parseFloat(el.price) < this.$store.state.highprice && el.title.toLowerCase().includes(this.$store.state.busqueda.toLowerCase())
       ).filter(el => this.$store.state.sale
-          ? el.price < this.$store.state.highprice && el.sale
-          : el.price < this.$store.state.highprice
+          ? parseFloat(el.price) < this.$store.state.highprice && el.sale
+          : parseFloat(el.price) < this.$store.state.highprice
       )
     },
     ...mapGetters({

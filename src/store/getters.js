@@ -9,9 +9,11 @@ export default { // = computed properties
       const product = state.products.find(product => product.id === cartItem.id)
       return {
         title: product.title,
+        totalcart: product.price*cartItem.quantity,
         price: product.price,
-        img: product.img,
+        img: './static/images/'+product.img,
         quantity: cartItem.quantity
+        
       }
     })
   },

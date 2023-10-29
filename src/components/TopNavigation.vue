@@ -34,6 +34,7 @@ export default {
   components: {
     logo
   },
+  
   computed: {
     noItems() {
       return this.$store.state.cartItems
