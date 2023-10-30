@@ -8,8 +8,14 @@ import {currency} from '@/currency'
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 
+import BootstrapVueIcons from 'bootstrap-vue'
 Vue.use(BootstrapVue);
+
+
+Vue.use(BootstrapVueIcons)
 
 Vue.config.productionTip = false
 Vue.filter('currency',currency)

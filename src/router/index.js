@@ -4,6 +4,7 @@ import index from '@/sections/index'
 import cart from '@/sections/cart'
 import login from '@/sections/login'
 import profile from '@/sections/profile'
+import purchase from '@/sections/purchase'
 import furniture from '@/sections/furniture'
 import decor from '@/sections/decor'
 import SideMainLayout from '@/layout/SideMainLayout'
@@ -48,6 +49,12 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: profile
+    },
+    {
+      path: '/purchase/:id',
+      name: 'purchase',
+      component: purchase,
+      props: true
     }
   ]
 })
