@@ -45,7 +45,9 @@ export default {
         nombres: '',
         apellidos: '',
         direccion: '',
-        telefono: ''
+        telefono: '',
+        getUser:{email:''},
+        actualUser:{}
      },
     };
   },
@@ -55,6 +57,12 @@ export default {
        user: state => state.user
     }),
 
+  },
+  created() {
+    console.log(this.user)
+    this.getUser.email=this.user
+    this.initialize()
+    console.log(this.actualUser)
   },
   methods:{
     update () {
@@ -67,6 +75,19 @@ export default {
                     .then(res => {                                         
                         this.$router.push('/');
                         alert("Datos actualizados")
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+                },initialize() {
+    var config_request={
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                    axios.post(this.postURL + '/usuario', this.getUser, { config_request })
+                    .then(res => {                                         
+                        this.actualUser = res.data;
+
                     })
                     .catch((error) => {
                         console.log(error)

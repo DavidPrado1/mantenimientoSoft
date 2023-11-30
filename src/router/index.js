@@ -8,6 +8,8 @@ import purchase from '@/sections/purchase'
 import furniture from '@/sections/furniture'
 import decor from '@/sections/decor'
 import SideMainLayout from '@/layout/SideMainLayout'
+import purchaselist from '@/sections/purchaselist'
+
 
 
 Vue.use(Router)
@@ -54,6 +56,12 @@ export default new Router({
       path: '/purchase/:id',
       name: 'purchase',
       component: purchase,
+      props: true
+    },
+    {
+      path: '/purchaselist',
+      name: 'purchaselist',
+      component: purchaselist,
       props: true
     }
   ]

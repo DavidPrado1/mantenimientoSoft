@@ -15,8 +15,10 @@
 </template>
 
 <script>
+
 import {mapState, mapGetters, mapActions} from 'vuex'
 import axios from 'axios'
+
 export default {
   name: 'ProductList',
   data() {
@@ -170,5 +172,6 @@ export default {
  .product-card.out-of-stock .product-price,  .product-card.out-of-stock .product-title{
    opacity: 0.6;
  }
+
 
 </style>

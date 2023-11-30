@@ -1,10 +1,14 @@
 <template>
     <nav>
-      <router-link to="/login" exact>
-        <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="user"><path fill="#231f20" d="M7.763 2A6.77 6.77 0 0 0 1 8.763c0 1.807.703 3.505 1.98 4.782a6.718 6.718 0 0 0 4.783 1.981 6.77 6.77 0 0 0 6.763-6.763A6.77 6.77 0 0 0 7.763 2ZM3.675 13.501a5.094 5.094 0 0 1 3.958-1.989c.024.001.047.007.071.007h.023c.022 0 .042-.006.064-.007a5.087 5.087 0 0 1 3.992 2.046 6.226 6.226 0 0 1-4.02 1.468 6.212 6.212 0 0 1-4.088-1.525zm4.032-2.494c-.025 0-.049.004-.074.005a2.243 2.243 0 0 1-2.167-2.255 2.246 2.246 0 0 1 2.262-2.238 2.246 2.246 0 0 1 2.238 2.262c0 1.212-.97 2.197-2.174 2.232-.028-.001-.056-.006-.085-.006Zm4.447 2.215a5.594 5.594 0 0 0-3.116-2.052 2.749 2.749 0 0 0 1.428-2.412A2.747 2.747 0 0 0 7.704 6.02a2.747 2.747 0 0 0-2.738 2.762 2.73 2.73 0 0 0 1.422 2.386 5.602 5.602 0 0 0-3.081 1.995 6.22 6.22 0 0 1-1.806-4.398 6.27 6.27 0 0 1 6.263-6.263 6.27 6.27 0 0 1 6.263 6.263 6.247 6.247 0 0 1-1.873 4.457z"></path></svg></div>
-      </router-link>
+        
+      <Dropdown title="Services" :items="services" class="nav2" />
       <router-link to="/" exact>
         <div class="logo"><logo></logo></div>
+      </router-link>
+      <router-link to="/purchaselist" exact>
+        <div class="logo">
+          <svg fill="#000000" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 483.1 483.1" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M434.55,418.7l-27.8-313.3c-0.5-6.2-5.7-10.9-12-10.9h-58.6c-0.1-52.1-42.5-94.5-94.6-94.5s-94.5,42.4-94.6,94.5h-58.6 c-6.2,0-11.4,4.7-12,10.9l-27.8,313.3c0,0.4,0,0.7,0,1.1c0,34.9,32.1,63.3,71.5,63.3h243c39.4,0,71.5-28.4,71.5-63.3 C434.55,419.4,434.55,419.1,434.55,418.7z M241.55,24c38.9,0,70.5,31.6,70.6,70.5h-141.2C171.05,55.6,202.65,24,241.55,24z M363.05,459h-243c-26,0-47.2-17.3-47.5-38.8l26.8-301.7h47.6v42.1c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h141.2v42.1 c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h47.6l26.8,301.8C410.25,441.7,389.05,459,363.05,459z"></path> </g> </g></svg>
+        </div>
       </router-link>
       
       <router-link to="/furniture">Furniture</router-link>
@@ -28,11 +32,31 @@
 <script>
 import index from '@/store/index'
 import logo from '@/assets/logo'
+import Dropdown from './Dropdown'
 
 export default {
   name:'TopNavigation',
   components: {
-    logo
+    logo,
+    Dropdown
+  },
+  data() {
+    return {
+      services: [
+        {
+          title: 'Perfil',
+          link: '#'
+        },
+        {
+          title: 'Modificar Perfil',
+          link:'#/profile'
+        },
+        {
+          title: 'Cerrar Sesion',
+          link: '#/login'
+        }
+      ]
+    };
   },
   
   computed: {
@@ -113,5 +137,31 @@ nav a.router-link-active {
   color: #fff;
   font-size: 14px;
   font-weight: bold;
+}
+.nav2 {
+
+  align-items: center;
+  justify-content: center;
+}
+
+.nav2 .menu-item {
+  color: #000000;
+  padding: 10px 20px;
+  position: relative;
+  text-align: center;
+  border-bottom: 3px solid transparent;
+  display: flex;
+  transition: 0.4s;
+}
+
+.nav2 .menu-item.active,
+.nav2 .menu-item:hover {
+  background-color: #4444445e;
+  border-bottom-color: #5c5c5c;
+}
+
+.nav2 .menu-item a {
+  color: inherit;
+  text-decoration: none;
 }
 </style>
