@@ -1,6 +1,6 @@
 <template>
   <footer>
-  Created by <a href="http://www.ananayneogi.com">Ananya</a> with lots of 🎧 . This is open source, <a href="https://github.com/ananyaneogi/a-vue-shop">visit the repo.</a>
+  <a href="https://github.com/DavidPrado1/mantenimientoSoft">visit the repo.</a>
 </footer>
 </template>
 
